@@ -23,7 +23,7 @@
                                 <rect key="frame" x="0.0" y="100" width="414" height="796"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="124" id="5OT-j7-T0T">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="124" id="5OT-j7-T0T" customClass="WeatherTableViewCell" customModule="RxWeather" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5OT-j7-T0T" id="LKA-BA-Gyg">
@@ -83,6 +83,13 @@
                                                 <constraint firstItem="06y-eT-7lh" firstAttribute="leading" secondItem="LKA-BA-Gyg" secondAttribute="leading" constant="15" id="jib-By-5tj"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cityLabel" destination="7pV-PB-DWt" id="PMt-hG-zBO"/>
+                                            <outlet property="humidityLabel" destination="OhN-Jo-fU5" id="42t-uR-951"/>
+                                            <outlet property="statusLabel" destination="f6m-f1-ofb" id="wxn-l7-PJp"/>
+                                            <outlet property="tempLabel" destination="0RU-OP-11a" id="PO8-a0-OjK"/>
+                                            <outlet property="windLabel" destination="mcf-ja-3SZ" id="gFF-sH-pr8"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -99,6 +106,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="KCG-9R-oTi" id="Oid-nf-mgb"/>
+                        <outlet property="tableView" destination="pKb-M4-cQv" id="NeX-WS-93X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
