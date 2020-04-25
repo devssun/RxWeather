@@ -16,21 +16,35 @@ class APIHelper {
         return "http://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(key)&units=metric&lang=kr"
     }
     
-    func getCurrentWeatherData(cityName name: String, completion: @escaping(Weather?) -> Void) {
+    private func getCurrentWeatherData(cityName name: String, completion: @escaping(Weather?, Error?) -> Void) {
         if let url = URL(string: urlString(cityName: name)) {
             let urlSession = URLSession.shared.dataTask(with: url) { (data, response, error) in
                 if let data = data {
                     do {
                         let json = try JSONDecoder().decode(Weather.self, from: data)
                         print(json)
-                        completion(json)
+                        completion(json, nil)
                     } catch {
                         print(error.localizedDescription)
+                        completion(nil, error)
                     }
                 }
             }
             
             urlSession.resume()
+        }
+    }
+    
+    func getCurrentWeatherDataRx(cityName name: String) -> Observable<Weather?> {
+        return Observable.create { emitter in
+            self.getCurrentWeatherData(cityName: name) { (weather, error)  in
+                if error != nil {
+                    emitter.onError(error!)
+                }
+                emitter.onNext(weather)
+                emitter.onCompleted()
+            }
+            return Disposables.create()
         }
     }
 }

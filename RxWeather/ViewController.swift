@@ -27,13 +27,13 @@ class ViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { input in
                 if let input = input, input.count > 2 {
-                    APIHelper().getCurrentWeatherData(cityName: input) { (weather) in
-                        self.weather = weather
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                        
-                    }
+                    APIHelper().getCurrentWeatherDataRx(cityName: input)
+                        .observeOn(MainScheduler.instance)
+                        .subscribe(onNext: { [weak self] weather in
+                            self?.weather = weather
+                            self?.tableView.reloadData()
+                        })
+                        .disposed(by: self.disposeBag)
                 }
             })
             .disposed(by: disposeBag)
