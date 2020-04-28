@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet fileprivate weak var tableView: UITableView!
 
     var disposeBag = DisposeBag()
-    var weather: Weather?
+    var viewModel = WeatherViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
                     APIHelper().getCurrentWeatherDataRx(cityName: input)
                         .observeOn(MainScheduler.instance)
                         .subscribe(onNext: { [weak self] weather in
-                            self?.weather = weather
+                            self?.viewModel.weather = weather
                             self?.tableView.reloadData()
                         })
                         .disposed(by: self.disposeBag)
@@ -44,7 +44,7 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? WeatherTableViewCell {
-            cell.weather = weather
+            cell.viewModel = viewModel
             return cell
         }
         fatalError("cell error")

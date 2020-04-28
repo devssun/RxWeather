@@ -18,6 +18,7 @@
 		46C694862453303B00DF7B9F /* WeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C694852453303B00DF7B9F /* WeatherTableViewCell.swift */; };
 		46C694882453335000DF7B9F /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C694872453335000DF7B9F /* Weather.swift */; };
 		46C6948A245333A800DF7B9F /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C69489245333A800DF7B9F /* APIHelper.swift */; };
+		46C6948C245868AE00DF7B9F /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C6948B245868AE00DF7B9F /* WeatherViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		46C694852453303B00DF7B9F /* WeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewCell.swift; sourceTree = "<group>"; };
 		46C694872453335000DF7B9F /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 		46C69489245333A800DF7B9F /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		46C6948B245868AE00DF7B9F /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				46C6946C24531BD300DF7B9F /* AppDelegate.swift */,
 				46C6946E24531BD300DF7B9F /* SceneDelegate.swift */,
 				46C6947024531BD300DF7B9F /* ViewController.swift */,
+				46C6948B245868AE00DF7B9F /* WeatherViewModel.swift */,
 				46C69489245333A800DF7B9F /* APIHelper.swift */,
 				46C694872453335000DF7B9F /* Weather.swift */,
 				46C694852453303B00DF7B9F /* WeatherTableViewCell.swift */,
@@ -161,6 +164,7 @@
 				46C6948A245333A800DF7B9F /* APIHelper.swift in Sources */,
 				46C694862453303B00DF7B9F /* WeatherTableViewCell.swift in Sources */,
 				46C6947124531BD300DF7B9F /* ViewController.swift in Sources */,
+				46C6948C245868AE00DF7B9F /* WeatherViewModel.swift in Sources */,
 				46C6946D24531BD300DF7B9F /* AppDelegate.swift in Sources */,
 				46C6946F24531BD300DF7B9F /* SceneDelegate.swift in Sources */,
 				46C694882453335000DF7B9F /* Weather.swift in Sources */,

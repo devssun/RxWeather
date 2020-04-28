@@ -16,13 +16,13 @@ class WeatherTableViewCell: UITableViewCell {
     @IBOutlet fileprivate weak var windLabel: UILabel!
     @IBOutlet fileprivate weak var humidityLabel: UILabel!
     
-    var weather: Weather? {
+    var viewModel: WeatherViewModel? {
         didSet {
-            cityLabel.text = "도시 이름 \(weather?.name ?? "")"
-            statusLabel.text = "날씨 상태 \(weather?.weather[0].weatherDescription ?? "")"
-            tempLabel.text = "기온 \(weather?.main.temp ?? 0)°C"
-            windLabel.text = "풍속 \(weather?.wind.speed ?? 0)m/s"
-            humidityLabel.text = "습도 \(weather?.main.humidity ?? 0)%"
+            cityLabel.text = viewModel?.cityName
+            statusLabel.text = viewModel?.status
+            tempLabel.text = viewModel?.temp
+            windLabel.text = viewModel?.windSpped
+            humidityLabel.text = viewModel?.humidity
         }
     }
 
