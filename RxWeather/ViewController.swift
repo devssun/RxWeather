@@ -29,9 +29,13 @@ class ViewController: UIViewController {
                 if let input = input, input.count > 2 {
                     APIHelper().getCurrentWeatherDataRx(cityName: input)
                         .observeOn(MainScheduler.instance)
-                        .subscribe(onNext: { [weak self] weather in
-                            self?.viewModel.weather = weather
-                            self?.tableView.reloadData()
+                        .subscribe(
+                            onNext: { [weak self] weather in
+                                self?.viewModel.weather = weather
+                                self?.tableView.reloadData()
+                            }, onError: { [weak self] error in
+                                self?.viewModel = WeatherViewModel()
+                                self?.tableView.reloadData()
                         })
                         .disposed(by: self.disposeBag)
                 }
