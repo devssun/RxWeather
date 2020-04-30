@@ -16,17 +16,19 @@ class APIHelper {
         return "http://api.openweathermap.org/data/2.5/weather?q=\(cityName)&appid=\(key)&units=metric&lang=kr"
     }
     
-    private func getCurrentWeatherData(cityName name: String, completion: @escaping(Weather?, Error?) -> Void) {
+    private func getCurrentWeatherData(cityName name: String, completion: @escaping(Result<Weather, Error>) -> Void) {
         if let url = URL(string: urlString(cityName: name)) {
             let urlSession = URLSession.shared.dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
                 if let data = data {
                     do {
-                        let json = try JSONDecoder().decode(Weather.self, from: data)
-                        print(json)
-                        completion(json, nil)
+                        let weather = try JSONDecoder().decode(Weather.self, from: data)
+                        completion(.success(weather))
                     } catch {
-                        print(error.localizedDescription)
-                        completion(nil, error)
+                        completion(.failure(error))
                     }
                 }
             }
@@ -35,14 +37,16 @@ class APIHelper {
         }
     }
     
-    func getCurrentWeatherDataRx(cityName name: String) -> Observable<Weather?> {
+    func getCurrentWeatherDataRx(cityName name: String) -> Observable<Weather> {
         return Observable.create { emitter in
-            self.getCurrentWeatherData(cityName: name) { (weather, error)  in
-                if error != nil {
-                    emitter.onError(error!)
+            self.getCurrentWeatherData(cityName: name) { result in
+                switch result {
+                case .success(let weather):
+                    emitter.onNext(weather)
+                    emitter.onCompleted()
+                case .failure(let error):
+                    emitter.onError(error)
                 }
-                emitter.onNext(weather)
-                emitter.onCompleted()
             }
             return Disposables.create()
         }
