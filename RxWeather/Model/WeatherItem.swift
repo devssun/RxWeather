@@ -1,5 +1,5 @@
 //
-//  Weather.swift
+//  WeatherItem.swift
 //  RxWeather
 //
 //  Created by 최혜선 on 2020/04/24.
@@ -13,7 +13,7 @@
 import Foundation
 
 // MARK: - Weather
-struct Weather: Codable {
+struct WeatherItem: Codable {
     let coord: Coord
     let weather: [WeatherElement]
     let base: String

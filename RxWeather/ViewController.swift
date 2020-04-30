@@ -27,7 +27,7 @@ class ViewController: UIViewController {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { input in
                 if let input = input, input.count > 2 {
-                    APIHelper().getCurrentWeatherDataRx(cityName: input)
+                    APIService.getCurrentWeatherDataRx(cityName: input)
                         .observeOn(MainScheduler.instance)
                         .subscribe(
                             onNext: { [weak self] weather in

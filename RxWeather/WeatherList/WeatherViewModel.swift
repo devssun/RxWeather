@@ -9,7 +9,7 @@
 import Foundation
 
 class WeatherViewModel {
-    var weather: Weather?
+    var weather: WeatherItem?
     
     var cityName: String? {
         return weather?.name
